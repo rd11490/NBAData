@@ -72,7 +72,7 @@ def call_and_save_play_type_data(season, season_type, play_type):
     frame = pd.DataFrame(resp['rowSet'])
     frame.columns = resp['headers']
 
-    frame.to_csv('./data/{}_{}_{}.csv'.format(play_type,season,season_type))
+    frame.to_csv('./data/synergy_{}_{}_{}.csv'.format(play_type,season,season_type))
 
 
 seasons = ['2015-16', '2016-17', '2017-18', '2018-19', '2019-20']

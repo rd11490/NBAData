@@ -128,7 +128,7 @@ def call_and_save_player_data(season, season_type, measure_type):
     frame = pd.DataFrame(resp['rowSet'])
     frame.columns = resp['headers']
 
-    frame.to_csv('./data/{}_{}_{}.csv'.format(measure_type, season, season_type))
+    frame.to_csv('./data/player_data_{}_{}_{}.csv'.format(measure_type, season, season_type))
 
 
 def call_and_save_player_info(season, season_type):
