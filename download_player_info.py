@@ -40,7 +40,7 @@ class PerMode:
     Default = Totals
 
 
-def build_params(season, season_type, measure_type, per_mode=PerMode.Default):
+def build_params(season, season_type, measure_type, per_mode=PerMode.Totals):
     return (
         ('College', ''),
         ('Conference', ''),
@@ -81,7 +81,7 @@ def build_params(season, season_type, measure_type, per_mode=PerMode.Default):
     )
 
 
-def build_player_info_params(season, season_type, per_mode=PerMode.Default):
+def build_player_info_params(season, season_type, per_mode=PerMode.Totals):
     return (
         ('College', ''),
         ('Conference', ''),
