@@ -82,40 +82,41 @@ headers = {
     'Accept-Language': 'en-US,en;q=0.9',
 }
 
-
+seasons = ['2010-11','2011-12','2012-13','2013-14','2014-15','2015-16', '2016-17', '2017-18', '2018-19', '2019-20']
 players_list = []
 
-for team in NBATeams.Teams:
-    print(team)
+for season in seasons:
+    for team in NBATeams.Teams:
+        print(team)
 
-    params = (
-        ('season', '2019-20'),
-        ('leagueId', '00'),
-        ('teamId', team),
-    )
+        params = (
+            ('season', '2019-20'),
+            ('leagueId', '00'),
+            ('teamId', team),
+        )
 
-    response = requests.get('http://stats.nba.com/stats/commonteamroster', headers=headers, params=params, timeout=5)
-    jsn = response.json()
-    resp = jsn['resultSets'][0]
-    players = resp['rowSet']
+        response = requests.get('http://stats.nba.com/stats/commonteamroster', headers=headers, params=params, timeout=5)
+        jsn = response.json()
+        resp = jsn['resultSets'][0]
+        players = resp['rowSet']
 
-    p_frame = pd.DataFrame(players)
-    p_frame.columns = resp['headers']
-    players_list.append(p_frame)
+        p_frame = pd.DataFrame(players)
+        p_frame.columns = resp['headers']
+        players_list.append(p_frame)
 
-    # def img_url(player, team, season):
-    #     return 'https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/{}/{}/260x190/{}.png'.format(team, season, player)
-    # for p in players:
-    #     team_id = p[0]
-    #     season = p[1]
-    #     player_id = p[-1]
-    #     player_name = p[3]
-    #     url = img_url(player_id, team_id, season)
-    #     response = requests.get(url, stream=True)
-    #     with open('pictures/{}_{}_{}_{}.png'.format(player_name, player_id, team_id, season), 'wb') as out_file:
-    #         shutil.copyfileobj(response.raw, out_file)
-    #     del response
-    time.sleep(2)
+        # def img_url(player, team, season):
+        #     return 'https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/{}/{}/260x190/{}.png'.format(team, season, player)
+        # for p in players:
+        #     team_id = p[0]
+        #     season = p[1]
+        #     player_id = p[-1]
+        #     player_name = p[3]
+        #     url = img_url(player_id, team_id, season)
+        #     response = requests.get(url, stream=True)
+        #     with open('pictures/{}_{}_{}_{}.png'.format(player_name, player_id, team_id, season), 'wb') as out_file:
+        #         shutil.copyfileobj(response.raw, out_file)
+        #     del response
+        time.sleep(2)
 
 frame = pd.concat(players_list)
 print(frame)

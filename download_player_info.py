@@ -145,7 +145,7 @@ def call_and_save_player_info(season, season_type):
     frame.to_csv('./data/player_bios_{}_{}.csv'.format(season, season_type))
 
 
-seasons = ['2015-16', '2016-17', '2017-18', '2018-19', '2019-20']
+seasons = ['2010-11','2011-12','2012-13','2013-14','2014-15','2015-16', '2016-17', '2017-18', '2018-19', '2019-20']
 
 for season in seasons:
     call_and_save_player_info(season, 'Regular Season')

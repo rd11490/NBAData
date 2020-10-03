@@ -75,10 +75,13 @@ def call_and_save_play_type_data(season, season_type, play_type):
     frame.to_csv('./data/synergy_{}_{}_{}.csv'.format(play_type,season,season_type))
 
 
-seasons = ['2015-16', '2016-17', '2017-18', '2018-19', '2019-20']
+seasons = ['2010-11','2011-12','2012-13','2013-14','2014-15','2015-16', '2016-17', '2017-18', '2018-19', '2019-20']
 
 for season in seasons:
     for play_type in PlayTypes.play_types:
-        print(season, play_type)
-        call_and_save_play_type_data(season, 'Regular Season', play_type)
-        sleep(1.5)
+        try:
+            print(season, play_type)
+            call_and_save_play_type_data(season, 'Regular Season', play_type)
+            sleep(1.5)
+        except:
+            print('data does not exist for {} - {}'.format(season, play_type))
